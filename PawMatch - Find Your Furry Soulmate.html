@@ -1,0 +1,177 @@
+<html><head><base href="https://pawmatch.com.br" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawMatch - Encontre Seu Companheiro Peludo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .logo {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #ff4d4d;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .card-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      background-color: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      color: #666;
+    }
+    .card-info {
+      padding: 15px;
+    }
+    .pet-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0;
+    }
+    .pet-details {
+      color: #666;
+      margin: 5px 0;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    .button {
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dislike {
+      background-color: #ff4d4d;
+      color: white;
+    }
+    .like {
+      background-color: #4caf50;
+      color: white;
+    }
+    .dislike:hover {
+      background-color: #ff3333;
+    }
+    .like:hover {
+      background-color: #45a049;
+    }
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+    .nav-item {
+      text-decoration: none;
+      color: #666;
+      font-size: 0.9em;
+    }
+    .nav-item.active {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">🐾 PawMatch</div>
+      </header>
+      
+      <main>
+        <div class="card">
+          <img src="https://images.dog.ceo/breeds/retriever-golden/n02099601_1068.jpg" alt="Um adorável golden retriever" class="card-image">
+          <div class="card-info">
+            <h2 class="pet-name">Amigo</h2>
+            <p class="pet-details">Golden Retriever, 3 anos</p>
+            <p class="pet-details">Adora brincar de buscar e se aconchegar</p>
+          </div>
+          <div class="button-container">
+            <button class="button dislike">✗</button>
+            <button class="button like">♥</button>
+          </div>
+        </div>
+      </main>
+      
+      <nav class="nav">
+        <a href="https://pawmatch.com.br/explorar" class="nav-item active">Explorar</a>
+        <a href="https://pawmatch.com.br/combinacoes" class="nav-item">Combinações</a>
+        <a href="https://pawmatch.com.br/mensagens" class="nav-item">Mensagens</a>
+        <a href="https://pawmatch.com.br/perfil" class="nav-item">Perfil</a>
+      </nav>
+    </div>
+  
+    <script>
+      const cardImage = document.querySelector('.card-image');
+      const petName = document.querySelector('.pet-name');
+      const petDetails = document.querySelectorAll('.pet-details');
+      const likeButton = document.querySelector('.like');
+      const dislikeButton = document.querySelector('.dislike');
+  
+      const pets = [
+      { name: "Amigo", type: "cachorro", breed: "Golden Retriever", age: 3, image: "https://dogtime.com/wp-content/uploads/sites/12/2024/03/GettyImages-1285465107-e1710251441662.jpg?w=1024", details: "Adora brincar de buscar e se aconchegar" },
+      { name: "Bigodes", type: "gato", breed: "Siamês", age: 2, image: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg", details: "Gosta de tomar sol e perseguir ponteiros laser" },
+      { name: "Max", type: "cachorro", breed: "Pastor Alemão", age: 4, image: "https://cdn.sanity.io/images/4ij0poqn/production/c81ca1e96c220c7642425f9069bdc786132d8411-1200x700.jpg", details: "Leal e protetor, ótimo com crianças" },
+      { name: "Luna", type: "gato", breed: "Maine Coon", age: 1, image: "https://cdn2.thecatapi.com/images/OOD3VXAQn.jpg", details: "Brincalhona e carinhosa, adora ser escovada" },
+      { name: "Rocky", type: "cachorro", breed: "Bulldog", age: 5, image: "https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg", details: "Calmo e amigável, perfeito para apartamentos" }
+    ];
+  
+      let currentPetIndex = 0;
+  
+      function showNextPet() {
+        if (currentPetIndex >= pets.length) {
+          currentPetIndex = 0;
+        }
+        const pet = pets[currentPetIndex];
+        cardImage.src = pet.image;
+        cardImage.alt = `Um adorável ${pet.type}`;
+        petName.textContent = pet.name;
+        petDetails[0].textContent = `${pet.breed}, ${pet.age} anos`;
+        petDetails[1].textContent = pet.details;
+        currentPetIndex++;
+      }
+  
+      likeButton.addEventListener('click', () => {
+        console.log('Curtiu!');
+        showNextPet();
+      });
+  
+      dislikeButton.addEventListener('click', () => {
+        console.log('Não curtiu!');
+        showNextPet();
+      });
+  
+      showNextPet(); // Mostra o primeiro animal
+    </script>
+  </body></html>
